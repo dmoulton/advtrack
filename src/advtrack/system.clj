@@ -19,7 +19,7 @@
          :defaults   site-defaults}})
 
 (defn new-system [options]
-  (let [config (meta-merge base-options options)]
+  (let [options (meta-merge base-options options)]
     (-> (component/system-map
          :app  (handler-component (:app options))
          :http (jetty-server (:http options))
