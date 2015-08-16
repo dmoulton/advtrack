@@ -15,10 +15,14 @@
 
 (def config
   (meta-merge config/defaults
-              config/environ
-              dev-config))
+    config/environ
+    dev-config))
+
+(def options
+  {:http {:port 3000}
+   :db   {:uri "jdbc:postgresql://localhost/postgres"}})
 
 (when (io/resource "local.clj")
   (load "local"))
 
-(reloaded.repl/set-init! #(system/new-system config))
+(reloaded.repl/set-init! #(system/new-system options))
